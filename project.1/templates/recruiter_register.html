@@ -1,0 +1,107 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+   <form action="register_recruiter" method="post" id="register_recruiter">
+       <div class="accordion" id="recruit_register">
+          <div class="card">
+            <div class="card-header text-white bg-dark" id="account_info_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#accountInfo" aria-expanded="true" aria-controls="accountInfo">
+                  Account Details
+                </button>
+              </h5>
+            </div>
+            <div id="accountInfo" class="collapse show" aria-labelledby="account_info_heading" data-parent="#recruit_register">
+              <div class="card-body">
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text" >
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password" >
+                </div>
+                <div class="form-group row">
+                    <label for="confirm" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <input autocomplete="off" autofocus class="form-control" name="confirm" placeholder="Confirm Password" type="password" >
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="company_info_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#company_info" aria-expanded="true" aria-controls="company_info">
+                  Company Details
+                </button>
+              </h5>
+            </div>
+            <div id="company_info" class="collapse" aria-labelledby="company_info_heading" data-parent="#recruit_register">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <input autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="companyName" class="col-sm-2 col-form-label">Company Name</label>
+                        <input autocomplete="off" autofocus class="form-control" name="company_name" placeholder="CompanyName" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="website" class="col-sm-2 col-form-label">Website</label>
+                        <input autocomplete="off" autofocus class="form-control" name="website" placeholder="Website" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                        <input autocomplete="off" autofocus class="form-control" name="phone" placeholder="Phone" type="number" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
+                        <input autocomplete="off" autofocus class="form-control" name="mobile" placeholder="Mobile" type="number" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="fax" class="col-sm-2 col-form-label">Fax</label>
+                        <input autocomplete="off" autofocus class="form-control" name="fax" placeholder="Fax" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-2 col-form-label">Address</label>
+                        <input autocomplete="off" autofocus class="form-control" name="address" placeholder="Address" type="text" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-dark" type="submit" style="margin-top:20px;">Register</button>
+   </form>
+   <script>
+        $(document).ready(function() {
+            document.querySelector('#register_recruiter').onsubmit = function(event) {
+                form_length = $("input").length;
+                form_elements = [];
+                $("input").each(function()
+                {
+                    form_elements.push($(this));
+                });
+                for (let i = 0; i <= form_length; i++)
+                {
+                    if (form_elements[i][0]["value"] == "")
+                    {
+                        event.preventDefault();
+                        element_name = form_elements[i][0].getAttribute("name");
+                        element_name = element_name.replace(/_/g, " ");
+                        element_name = element_name.split(" ");
+                        for(let i = 0; i < element_name.length; i++)
+                        {
+                            element_name[i] = element_name[i].charAt(0).toUpperCase() + element_name[i].substring(1);
+                        }
+                        element_name = element_name.join(" ");
+                        alert(element_name + " is empty");
+                        break;
+                    }
+                }
+            };
+        });
+   </script>
+{% endblock %}

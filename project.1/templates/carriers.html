@@ -1,0 +1,21 @@
+{% extends "candidate_layout.html" %}
+
+{% block title %}
+    Carriers
+{% endblock %}
+
+{% block main %}
+   {% if identity == "candidate" %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Type</th>
+                    <th>Posting Title</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+        <table>
+   {% else %}
+       <h1>Recruiter Index</h1>
+   {% endif %}
+{% endblock %}

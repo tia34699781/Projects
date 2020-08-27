@@ -1,0 +1,43 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Notifications
+{% endblock %}
+
+{% block main %}
+    {% if no_data == false %}
+        {% for rows_notifications in notifications %}
+            <div class="alert alert-dark">
+                <div class="container">
+                    <div class="alert-icon">
+                        <i class="fas fa-2x fa-user-tie"></i>
+                    </div>
+                    <form action="/delete_notification" method="post">
+                        <button value="{{ rows_notifications }}" name="delete_notification_btn" type="submit" class="close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </form>
+                    <h5>{{ rows_notifications["message"] }}</h5>
+                    {% if rows_notifications["is_candidate"] == True %}
+                        <div class="row" style="margin-left:40%;">
+                            <form action="/accept_candidate" method="post">
+                                   <button value="{{ rows_notifications }}" name="accept_candidate_btn" class="btn btn-outline-dark" type="submit">Accept <i class='fas fa-check'></i></button>
+                            </form>
+                            &nbsp;&nbsp;
+                            <form action="/decline_candidate" method="post">
+                                   <button value="{{ rows_notifications }}" name="decline_candidate_btn" class="btn btn-outline-dark" type="submit">Decline <i class='fas fa-times'></i></button>
+                            </form>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <form action="/candidates_full_profile" method="post">
+                                   <button value="{{ rows_notifications["sender_id"] }}" name="full_profile_btn" class="btn btn-outline-dark" type="submit">View Profile <i class='fas fa-user-tie'></i></button>
+                            </form>
+                        </div>
+                    {% endif %}
+                    <h6 style="font-size:13px; float:right; color:rgb(148,148,148);">{{ rows_notifications["time_posted"] }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h4>There are no notifications yet.</h4>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Job_openings
+{% endblock %}
+
+{% block main %}
+    <form action="/my_job_openings" method="get">
+       <div class="form-group">
+           <button class="btn btn-outline-dark" type="submit">My Job openings <i class='fas fa-briefcase'></i></button>
+       </div>
+   </form>
+   <form action="/job_post" method="get">
+        <div class="form-group">
+           <button class="btn btn-outline-dark" type="submit">Post a Job<i class='fas fa-user-tie'></i></button>
+       </div>
+   </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Offer Job
+{% endblock %}
+
+{% block main %}
+    <form action="/offer_existing_job" method="post">
+       <div class="form-group">
+           <button value="{{ candidate_id }}" name="offer_existing_job_btn" class="btn btn-outline-dark" type="submit">Offer existing job <i class='fas fa-briefcase'></i></button>
+       </div>
+   </form>
+   <form action="/offer_new_job" method="post">
+        <div class="form-group">
+           <button value="{{ candidate_id }}" name="offer_new_job_btn" class="btn btn-outline-dark" type="submit">Offer new job<i class='fas fa-user-tie'></i></button>
+       </div>
+   </form>
+{% endblock %}

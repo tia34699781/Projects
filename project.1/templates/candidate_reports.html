@@ -1,0 +1,27 @@
+{% extends "candidate_layout.html" %}
+
+{% block title %}
+    Reports
+{% endblock %}
+
+{% block main %}
+    <div id="container" style="width: 550px; height: 550px; margin-left:250px;"></div>
+    <script>
+    anychart.onDocumentReady(function() {
+        var data_keys = {{ data_keys|tojson }};
+        var data_values = {{ data_values|tojson }};
+        var data = [];
+        for(let i = 0; i < data_keys.length; i++)
+        {
+            data[i] = {x: data_keys[i], value: data_values[i]};
+        }
+        var chart = anychart.pie();
+        chart.title("Industry-wise jobs");
+        chart.data(data);
+        chart.container('container');
+        chart.legend().position("right");
+        chart.legend().itemsLayout("vertical");
+        chart.draw();
+    });
+    </script>
+{% endblock %}

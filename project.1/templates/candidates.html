@@ -1,0 +1,47 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Candidates
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped" id="candidates">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Full Profile</th>
+                <th>Offer Job</th>
+            </tr>
+        <tbody>
+            {% for rows_candidates in candidates %}
+                <tr>
+                    <td>{{ rows_candidates["firstname"] }}</td>
+                    <td>{{ rows_candidates["lastname"] }}</td>
+                    <td>{{ rows_candidates["email"] }}</td>
+                    <td>{{ rows_candidates["mobile"] }}</td>
+                    <td>
+                        <form action="/candidates_full_profile" method="post" id="full_profile">
+                            <button value="{{ rows_candidates["id"] }}" name="full_profile_btn" class="btn btn-outline-dark" type="submit">Full Profile<i class='fas fa-user'></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/offer_job" method="post" id="offer_job">
+                            <button value="{{ rows_candidates["id"] }}" name="offer_job_btn" class="btn btn-outline-dark" type="submit">Offer Job<i class='fas fa-user'></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function() {
+            $("#candidates").DataTable({
+                'info': false,
+                'ordering': false,
+            });
+        });
+    </script>
+{% endblock %}

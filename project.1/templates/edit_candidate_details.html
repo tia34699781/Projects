@@ -1,0 +1,160 @@
+{% extends "candidate_layout.html" %}
+
+{% block title %}
+    Edit Details
+{% endblock %}
+
+{% block main %}
+   <form action="edit_candidate_details" method="post" id="edit_candidate_details">
+       <div class="accordion" id="candidate_edit">
+          <div class="card">
+            <div class="card-header text-white bg-dark" id="Basic_info_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#accountInfo" aria-expanded="true" aria-controls="accountInfo">
+                  Account Details
+                </button>
+              </h5>
+            </div>
+            <div id="accountInfo" class="collapse show" aria-labelledby="Basic_info_heading" data-parent="#candidate_edit">
+              <div class="card-body">
+                <div class="form-group row">
+                    <label for="username" class="col-sm-2 col-form-label">Username</label>
+                    <input value="{{ user[0]["username"] }}" autocomplete="off" value="" autofocus class="form-control" name="username" id="candidate_username" placeholder="Username" type="text" >
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
+                    <input autocomplete="off" autofocus class="form-control" name="password" placeholder="Password" type="password" >
+                </div>
+                <div class="form-group row">
+                    <label for="confirm" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <input autocomplete="off" autofocus class="form-control" name="confirm" placeholder="Confirm Password" type="password" >
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="resume_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#resume_info" aria-expanded="true" aria-controls="resume_info">
+                  Resume
+                </button>
+              </h5>
+            </div>
+            <div id="resume_info" class="collapse" aria-labelledby="resume_heading" data-parent="#candidate_edit">
+              <div class="card-body">
+                <div class="form-group row">
+                    <label for="firstname" class="col-sm-2 col-form-label">Firstname</label>
+                    <input value="{{ resume[0]["firstname"] }}" autocomplete="off" autofocus class="form-control" name="firstname" placeholder="Firstname" type="text" >
+                </div>
+                <div class="form-group row">
+                   <label for="lastname" class="col-sm-2 col-form-label">Lastname</label>
+                   <input value="{{ resume[0]["lastname"] }}" autocomplete="off" autofocus class="form-control" name="lastname" placeholder="Lastname" type="text" >
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <input value="{{ resume[0]["email"] }}" autocomplete="off" autofocus class="form-control" name="email" placeholder="Email" type="text" >
+                </div>
+                <div class="form-group row">
+                    <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
+                    <input value="{{ resume[0]["mobile"] }}" autocomplete="off" autofocus class="form-control" name="mobile" placeholder="Mobile" type="number" >
+                </div>
+                <div class="form-group row">
+                    <label for="address" class="col-sm-2 col-form-label">Address</label>
+                    <input value="{{ resume[0]["address"] }}" autocomplete="off" autofocus class="form-control" name="address" placeholder="Address" type="text" >
+                </div>
+            </div>
+          </div>
+          </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="professional_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#professional_info" aria-expanded="true" aria-controls="professional_info">
+                  Professional Details
+                </button>
+              </h5>
+            </div>
+            <div id="professional_info" class="collapse" aria-labelledby="professional_heading" data-parent="#candidate_edit">
+                <div class="card-body">
+                    <div class="row">
+                      <label for="current_job_title" class="col-sm-2 col-label">Current Job Title</label>
+                      <select name="current_job_title" class="form-control">
+                        {% if no_data == false %}
+                          <option disabled selected>Select a Title</option>
+                          {% for rows_title in job_titles %}
+                            <option>{{ rows_title["posting_title"] }}</option>
+                          {% endfor %}
+                        {% else %}
+                          <option disabled selected>no jobs available</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                    <div class="row">
+                      <label for="skill_set" class="col-sm-2 col-label">Skill-set</label>
+                      <textArea autocomplete="off" value="" autofocus class="form-control" rows="1" name="skill_set" >{{ resume[0]["skill_set"] }}</textArea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="educational_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#educational_info" aria-expanded="true" aria-controls="educational_info">
+                  Educational Details
+                </button>
+              </h5>
+            </div>
+            <div id="educational_info" class="collapse" aria-labelledby="educational_heading" data-parent="#candidate_edit">
+                <div class="card-body">
+                    <label class="col-6 col-form-label">Educational Details:</label>
+                    <textArea autocomplete="off" value="" autofocus class="form-control" rows="10" name="educational_details" >{{ resume[0]["educational_details"] }}</textArea>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="experience_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#experience_info" aria-expanded="true" aria-controls="experience_info">
+                    Experience Details
+                </button>
+              </h5>
+            </div>
+            <div id="experience_info" class="collapse" aria-labelledby="experience_heading" data-parent="#candidate_edit">
+                <div class="card-body">
+                    <label class="col-6 col-form-label">Experience Details:</label>
+                    <textArea autocomplete="off" value="" autofocus class="form-control" rows="10" name="experience_details" >{{ resume[0]["experience_details"] }}</textArea>
+                </div>
+            </div>
+        </div>
+        </div>
+        <button class="btn btn-dark" type="submit" style="margin-top:20px;">Edit &nbsp;<i class="fas fa-edit"></i></button>
+   </form>
+   <script>
+        $(document).ready(function() {
+            document.querySelector('#edit_candidate_details').onsubmit = function(event) {
+                form_length = $("input, textArea").length;
+                form_elements = [];
+                $("input, textArea, select").each(function()
+                {
+                    form_elements.push($(this));
+                });
+                for (let i = 0; i <= form_length; i++)
+                {
+                    if (form_elements[i][0]["value"] == "" || form_elements[i][0]["value"] == "Select a Title")
+                    {
+                        event.preventDefault();
+                        element_name = form_elements[i][0].getAttribute("name");
+                        element_name = element_name.replace(/_/g, " ");
+                        element_name = element_name.split(" ");
+                        for(let i = 0; i < element_name.length; i++)
+                        {
+                            element_name[i] = element_name[i].charAt(0).toUpperCase() + element_name[i].substring(1);
+                        }
+                        element_name = element_name.join(" ");
+                        alert(element_name + " is empty");
+                        break;
+                    }
+                }
+            };
+        });
+   </script>
+{% endblock %}

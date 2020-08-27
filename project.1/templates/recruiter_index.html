@@ -1,0 +1,45 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+    <h1>Recruiter Index</h1>
+    <div class="card">
+        <h1>Profile</h1>
+        <div class="row">
+            <label class="col-md-4 col-label"><b>Company Name</b></label>
+            <h4>{{ recruiter_details[0]["company_name"] }}</h4>
+        </div>
+        <div class="row">
+            <label class="col-md-4 col-label"><b>Email</b></label>
+            <h4>{{ recruiter_details[0]["email"] }}</h4>
+        </div>
+        <div class="row">
+            <label class="col-md-4 col-label"><b>Website</b></label>
+            <h4>{{ recruiter_details[0]["website"] }}</h4>
+        </div>
+        <div class="row">
+            <label class="col-md-4 col-label"><b>Phone</b></label>
+            <h4>{{ recruiter_details[0]["phone"] }}</h4>
+        </div>
+         <div class="row">
+            <label class="col-md-4 col-label"><b>Mobile</b></label>
+            <h4>{{ recruiter_details[0]["mobile"] }}</h4>
+        </div>
+        <div class="row">
+            <label class="col-md-4 col-label"><b>Fax</b></label>
+            <h4>{{ recruiter_details[0]["fax"] }}</h4>
+        </div>
+        <div class="row">
+            <label class="col-md-4 col-label"><b>Address</b></label>
+            <h4>{{ recruiter_details[0]["address"] }}</h4>
+        </div>
+    </div>
+    <form action="/edit_recruiter_details" method="get">
+        <div class="form-group"></div>
+            <button name="edit_details_btn" class="btn btn-outline-dark" type="submit">Edit Details &nbsp;<i class='fas fa-edit'></i></button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "candidate_layout.html" %}
+
+{% block title %}
+    Jobs
+{% endblock %}
+
+{% block main %}
+    {% if no_data == False %}
+        <table class="table table-striped" id="jobs" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Apply Now</th>
+                    <th>Job Type</th>
+                    <th>Posting Title</th>
+                    <th>Salary</th>
+                    <th>Job_Owner</th>
+                    <th>Skill Set</th>
+                    <th>Date Opened</th>
+                    <th>Minimum Experience</th>
+                    <th>State</th>
+                    <th>Country</th>
+                </tr>
+            <tbody>
+                {% for rows_job in jobs %}
+                    <tr>
+                        <td>
+                            <form action="/apply_for_job" method="post">
+                                <button value="{{ rows_job }}" name="apply_for_job_btn" class="btn btn-outline-dark" type="submit">Apply Now<i class='fas fa-user'></i></button>
+                            </form>
+                        </td>
+                        <td>{{ rows_job["job_type"] }}</td>
+                        <td>{{ rows_job["posting_title"] }}</td>
+                        <td>{{ rows_job["salary"] }}</td>
+                        <td>{{ rows_job["job_owner"] }}</td>
+                        <td>{{ rows_job["skill_set"] }}</td>
+                        <td>{{ rows_job["date_opened"] }}</td>
+                        <td>{{ rows_job["experience"] }}</td>
+                        <td>{{ rows_job["state"] }}</td>
+                        <td>{{ rows_job["country"] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h4 style="color:gray;">You have not posted any jobs yet</h4>
+    {% endif %}
+     <script>
+        $(document).ready(function() {
+            $("#jobs").DataTable({
+                'info': false,
+                'ordering': false,
+                "columns": [
+                    { "width": "10%" },
+                    { "width": "30%" },
+                    { "width": "20%" },
+                    { "width": "10%" },
+                    { "width": "10%" },
+                    { "width": "100%" },
+                    { "width": "20%" },
+                    { "width": "20%" },
+                    { "width": "20%" },
+                    { "width": "20%" }
+                ]
+            });
+        });
+    </script>
+{% endblock %}

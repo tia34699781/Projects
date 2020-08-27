@@ -1,0 +1,95 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Candidate Full Profile
+{% endblock %}
+
+{% block main %}
+    <div class="accordion" id="candidate_profile">
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="resume_info_heading">
+                <h5 class="mb-0">
+                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#resume_info" aria-expanded="true" aria-controls="resume_info">
+                        Resume
+                    </button>
+                </h5>
+            </div>
+            <div id="resume_info" class="collapse show" aria-labelledby="resume_info_heading" data-parent="#candidate_profile">
+                <div class="card-body">
+                    <div class="row">
+                        <label class="col-md-4 col-label"><b>FirstName</b></label>
+                        <h4>{{ resume[0]["firstname"] }}</h4>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4 col-label"><b>LastName</b></label>
+                        <h4>{{ resume[0]["lastname"] }}</h4>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4 col-label"><b>Email</b></label>
+                        <h4>{{ resume[0]["email"] }}</h4>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4 col-label"><b>Mobile</b></label>
+                        <h4>{{ resume[0]["mobile"] }}</h4>
+                    </div>
+                     <div class="row">
+                        <label class="col-md-4 col-label"><b>Address</b></label>
+                        <h4>{{ resume[0]["address"] }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="professional_info_heading">
+                <h5 class="mb-0">
+                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#professional_info" aria-expanded="true" aria-controls="professional_info">
+                        Professional Details
+                    </button>
+                </h5>
+            </div>
+            <div id="professional_info" class="collapse" aria-labelledby="professional_info_heading" data-parent="#candidate_profile">
+                <div class="card-body">
+                    <div class="row">
+                        <label class="col-md-2 col-label"><b>Skill Set</b></label>
+                        <h4 style="margin-left:20px;">{{ resume[0]["skill_set"] }}</h4>
+                    </div>
+                     <div class="row">
+                        <label class="col-md-4 col-label"><b>Current Job title</b></label>
+                        <h4>{{ resume[0]["current_job_title"] }}</h4>
+                    </div>
+                </div>
+            </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="educational_info_heading">
+                <h5 class="mb-0">
+                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#educational_info" aria-expanded="true" aria-controls="educational_info">
+                        Educational Details
+                    </button>
+                </h5>
+            </div>
+            <div id="educational_info" class="collapse" aria-labelledby="educational_info_heading" data-parent="#candidate_profile">
+                <div class="card-body">
+                    <div class="row">
+                        <label class="col-md-4 col-label"><b>Educational details</b></label>
+                        <h4>{{ resume[0]["educational_details"] }}</h4>
+                    </div>
+                </div>
+            </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="experinece_info_heading">
+                <h5 class="mb-0">
+                    <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#experinece_info" aria-expanded="true" aria-controls="experinece_info">
+                        Experience Details
+                    </button>
+                </h5>
+            </div>
+            <div id="experinece_info" class="collapse" aria-labelledby="experinece_info_heading" data-parent="#candidate_profile">
+                <div class="card-body">
+                    <div class="row">
+                        <label class="col-md-4 col-label"><b>Experinece details</b></label>
+                        <h4>{{ resume[0]["experience_details"] }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "recruiter_layout.html" %}
+
+{% block title %}
+    Job_openings
+{% endblock %}
+
+{% block main %}
+    <h1>Post a Job</h1>
+    <form action="edit_job_openings" method="post" id="edit_job_opening">
+        <div class="accordion" id="edit_job">
+          <div class="card">
+            <div class="card-header text-white bg-dark" id="Basic_info_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#job_info" aria-expanded="true" aria-controls="job_info">
+                  Job Details
+                </button>
+              </h5>
+            </div>
+            <div id="job_info" class="collapse show" aria-labelledby="Basic_info_heading" data-parent="#edit_job">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="job_type" class="col-sm-2 col-form-label">Job Type</label>
+                        <select autofocus class="form-control" name="job_type" required>
+                            <option selected disabled>Select a job type</option>
+                            <option>Full Time</option>
+                            <option>Part Time</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <label for="posting_title" class="col-sm-2 col-form-label">Posting Title</label>
+                        <input value="{{ job[0]["posting_title"] }}" autocomplete="off" autofocus class="form-control" name="posting_title" placeholder="Posting Title" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="salary" class="col-sm-2 col-form-label">Salary</label>
+                        <input value="{{ job[0]["salary"] }}" autocomplete="off" autofocus class="form-control" name="salary" placeholder="Salary" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="job_owner" class="col-sm-2 col-form-label">Job Owner</label>
+                        <input value="{{ job[0]["job_owner"] }}" autocomplete="off" autofocus class="form-control" name="job_owner" placeholder="Job Owner" type="text" >
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="card">
+            <div class="card-header text-white bg-dark" id="Address_info_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#address_info" aria-expanded="true" aria-controls="address_info">
+                  Address details
+                </button>
+              </h5>
+            </div>
+            <div id="address_info" class="collapse" aria-labelledby="Address_info_heading" data-parent="#edit_job">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="zip_code" class="col-sm-2 col-form-label">Zip/Postal Code</label>
+                        <input value="{{ job[0]["zip_code"] }}" autocomplete="off" autofocus class="form-control" name="zip_code" placeholder="Zip/Postal Code" type="number" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="state" class="col-sm-2 col-form-label">State/Province</label>
+                        <input value="{{ job[0]["state"] }}" autocomplete="off" autofocus class="form-control" name="state" placeholder="State/Province" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="country" class="col-sm-2 col-form-label">Country</label>
+                        <input value="{{ job[0]["country"] }}" autocomplete="off" autofocus class="form-control" name="country" placeholder="Country" type="text" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header text-white bg-dark" id="Candidate_info_heading">
+              <h5 class="mb-0">
+                <button class="btn btn-dark" type="button" data-toggle="collapse" data-target="#candidate_info" aria-expanded="true" aria-controls="candidate_info">
+                  Candidate Requirements
+                </button>
+              </h5>
+            </div>
+            <div id="candidate_info" class="collapse" aria-labelledby="Candidate_info_heading" data-parent="#edit_job">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="skill_set" class="col-sm-2 col-form-label">Skill set</label>
+                        <input value="{{ job[0]["skill_set"] }}" autocomplete="off" autofocus class="form-control" name="skill_set" placeholder="Skill set" type="text" >
+                    </div>
+                    <div class="form-group row">
+                        <label for="experience" class="col-sm-2 col-form-label">Minimum Experience</label>
+                        <input value="{{ job[0]["experience"] }}" autocomplete="off" autofocus class="form-control" name="experience" placeholder="Minimum Experience" type="text" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <button class="btn btn-dark" type="submit" style="margin-top:20px;">Edit Job Opening</button>
+    </form>
+    <script>
+        $(document).ready(function() {
+            document.querySelector('#edit_job_opening').onsubmit = function(event) {
+                form_length = $("input, select").length;
+                form_elements = [];
+                $("input, select").each(function()
+                {
+                    form_elements.push($(this));
+                });
+                for (let i = 0; i <= form_length; i++)
+                {
+                    if (form_elements[i][0]["value"] == "" || form_elements[i][0]["value"] == "Select a job type")
+                    {
+                        event.preventDefault();
+                        element_name = form_elements[i][0].getAttribute("name");
+                        element_name = element_name.replace(/_/g, " ");
+                        element_name = element_name.split(" ");
+                        for(let i = 0; i < element_name.length; i++)
+                        {
+                            element_name[i] = element_name[i].charAt(0).toUpperCase() + element_name[i].substring(1);
+                        }
+                        element_name = element_name.join(" ");
+                        alert(element_name + " is empty");
+                        break;
+                    }
+                }
+            };
+        });
+   </script>
+{% endblock %}

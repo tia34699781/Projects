@@ -1,0 +1,57 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+password {
+    margin-left:50px;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+textarea[name="professional_details"], textarea[name="educational_details"], textarea[name="experience_details"]{
+    width:700px;
+}
+
+.col-md-4{
+    margin-left:200px;
+    font-size:25px;
+    color:gray;
+}
+.col-md-2{
+    margin-left:420px;
+    font-size:25px;
+    color:gray;
+}
+#jobs {
+    min-width:100%;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+    float:left;
+}
+
+.alert .alert-icon {
+    display: block;
+    float: left;
+}
